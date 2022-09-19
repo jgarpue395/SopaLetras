@@ -100,7 +100,7 @@ public class Tabla
 	}
 
 	private void colocarPalabraHorizontalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException {
-		if(palabra.length() < coordenada.getColumna()-1)
+		if(palabra.length() > coordenada.getColumna()-1)
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
@@ -156,7 +156,7 @@ public class Tabla
 	}
 
 	private void colocarPalabraVerticalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException {
-		if(palabra.length() < coordenada.getFila()-1)
+		if(palabra.length() > coordenada.getFila()-1)
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}

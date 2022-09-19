@@ -18,7 +18,7 @@ public class Main
 		{
 			Tabla t = new Tabla(n);
 			t.generarTablero();
-			Coordenada c = new Coordenada(0, 0, Sentido.NORMAL);
+			Coordenada c = new Coordenada(2, 0, Sentido.INVERSO);
 			t.colocarPalabraHorizontal("HOLA", c);
 			
 			t.colocarPalabraVertical("HIERBA", c);
