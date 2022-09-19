@@ -175,11 +175,6 @@ public class Tabla
 			}
 		}
 	}
-	
-//	private HashMap<K, V> mostrarResumenDeLetras() 
-//	{
-//		
-//	}
 
 	@Override
 	public String toString() 
