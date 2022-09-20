@@ -70,7 +70,7 @@ public class Tabla
 	public void colocarPalabraHorizontal(String palabra, Coordenada coordenada) throws SopaLetrasException
 	{
 		checkeoPalabra(palabra, coordenada);
-		
+		//comprueba el sentido de la palabra pasada por parametro
 		if(coordenada.getSentido() == Sentido.NORMAL)
 		{
 			colocarPalabraHorizontalNormal(palabra, coordenada);
@@ -83,37 +83,44 @@ public class Tabla
 	
 	private void colocarPalabraHorizontalNormal(String palabra, Coordenada coordenada) throws SopaLetrasException 
 	{
+		//compruebo que la palabra quepa en el hueco asignado
 		if(palabra.length() > this.tamano - coordenada.getColumna())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
 		
-		for(int i = 0; i < palabra.length(); i++)
+		//recorro la palabra y asigno cada letra a un espacio de la matriz
+		for (int i = 0; i < palabra.length(); i++)
 		{
 			letra = palabra.charAt(i);
 			
-			if(!this.tablero.get(coordenada.getFila()).get(coordenada.getColumna()+i).equals('*') && !this.tablero.get(coordenada.getFila()).get(coordenada.getColumna()+i).equals(letra))
+			//compruebo que en el hueco donde quiero asignar la palabra halla un * o que la letra sea igual a la que voy a colocar, en caso de que no sea asi salta una excepcion
+			if(!this.tablero.get(coordenada.getFila()).get(coordenada.getColumna()+i).equals('*') && !this.tablero.get(coordenada.getFila()).get(coordenada.getColumna()+i).equals(this.letra))
 			{
 				throw new SopaLetrasException("Ya existe una letra diferente a la que quieres meter en el hueco");
 			}
 			else
 			{
-				this.tablero.get(coordenada.getFila()).set(coordenada.getColumna()+i, letra);
+				this.tablero.get(coordenada.getFila()).set(coordenada.getColumna()+i, this.letra);
 			}
 		}
 	}
 
+	
 	private void colocarPalabraHorizontalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException 
 	{
-		if(palabra.length()-1 > coordenada.getColumna())
+		//compruebo que la palabra quepa en el hueco asignado
+		if (palabra.length()-1 > coordenada.getColumna())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
 		
-		for(int i = 0; i < palabra.length(); i++)
+		//recorro la palabra y asigno cada letra a un espacio de la matriz
+		for (int i = 0; i < palabra.length(); i++)
 		{
 			letra = palabra.charAt(i);
 			
+			//compruebo que en el hueco donde quiero asignar la palabra halla un * o que la letra sea igual a la que voy a colocar, en caso de que no sea asi salta una excepcion
 			if(!this.tablero.get(coordenada.getFila()).get(coordenada.getColumna()-i).equals('*') && !this.tablero.get(coordenada.getFila()).get(coordenada.getColumna()+i).equals(letra))
 			{
 				throw new SopaLetrasException("Ya existe una letra diferente a la que quieres meter en el hueco");
@@ -125,64 +132,70 @@ public class Tabla
 		}
 	}
 
+	//metodo que llama a otros metodos para colocar la palabras en vertical y para hacer comprobaciones previas
 	public void colocarPalabraVertical(String palabra, Coordenada coordenada) throws SopaLetrasException
 	{
 		checkeoPalabra(palabra, coordenada);
 		
-		if(coordenada.getSentido() == Sentido.NORMAL)
+		//comprueba el sentido de la palabra pasada por parametro
+		if (coordenada.getSentido() == Sentido.NORMAL)
 		{
-			colocarPalabraVerticalNormal(palabra, coordenada);
+			this.colocarPalabraVerticalNormal(palabra, coordenada);
 		}
 		else
 		{
-			colocarPalabraVerticalInversa(palabra, coordenada);
+			this.colocarPalabraVerticalInversa(palabra, coordenada);
 		}
 	}
 
 	private void colocarPalabraVerticalNormal(String palabra, Coordenada coordenada) throws SopaLetrasException 
 	{
+		//compruebo que la palabra quepa en el hueco asignado
 		if(palabra.length() > this.tamano - coordenada.getFila())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
 		
-		for(int i = 0; i < palabra.length(); i++)
+		//compruebo que en el hueco donde quiero asignar la palabra halla un * o que la letra sea igual a la que voy a colocar, en caso de que no sea asi salta una excepcion
+		for (int i = 0; i < palabra.length(); i++)
 		{
-			letra = palabra.charAt(i);
+			this.letra = palabra.charAt(i);
 			
-			if(!this.tablero.get(coordenada.getFila()+i).get(coordenada.getColumna()).equals('*') && !this.tablero.get(coordenada.getFila()+i).get(coordenada.getColumna()).equals(letra))
+			if (!this.tablero.get(coordenada.getFila()+i).get(coordenada.getColumna()).equals('*') && !this.tablero.get(coordenada.getFila()+i).get(coordenada.getColumna()).equals(this.letra))
 			{
 				throw new SopaLetrasException("Ya existe una letra diferente a la que quieres meter en el hueco");
 			}
-			else
-			{
-				this.tablero.get(coordenada.getFila()+i).set(coordenada.getColumna(), letra);
-			}
+			
+			this.tablero.get(coordenada.getFila()+i).set(coordenada.getColumna(), this.letra);
 		}
 	}
 
 	private void colocarPalabraVerticalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException 
 	{
+		//compruebo que la palabra quepa en el hueco asignado
 		if(palabra.length()-1 > coordenada.getFila())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
 		
+		//recorro la palabra y asigno cada letra a un espacio de la matriz
 		for(int i = 0; i < palabra.length(); i++)
 		{
-			letra = palabra.charAt(i);
+			this.letra = palabra.charAt(i);
 			
-			if(!this.tablero.get(coordenada.getFila()-i).get(coordenada.getColumna()).equals('*') && !this.tablero.get(coordenada.getFila()-i).get(coordenada.getColumna()).equals(letra))
+			//compruebo que en el hueco donde quiero asignar la palabra halla un * o que la letra sea igual a la que voy a colocar, en caso de que no sea asi salta una excepcion
+			if(!this.tablero.get(coordenada.getFila()-i).get(coordenada.getColumna()).equals('*') && !this.tablero.get(coordenada.getFila()-i).get(coordenada.getColumna()).equals(this.letra))
 			{
 				throw new SopaLetrasException("Ya existe una letra diferente a la que quieres meter en el hueco");
 			}
 			else
 			{
-				this.tablero.get(coordenada.getFila()-i).set(coordenada.getColumna(), letra);
+				this.tablero.get(coordenada.getFila()-i).set(coordenada.getColumna(), this.letra);
 			}
 		}
 	}
 
+	//guardo en una variable todas las celdas de la matriz
 	@Override
 	public String toString() 
 	{

@@ -11,18 +11,18 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		System.out.println("Indica el tama\u00f1o del tablero");
-		int n = sc.nextInt();
+		int tamano = scanner.nextInt();
 		try 
 		{
-			Tabla t = new Tabla(n);
-			t.generarTablero();
-			Coordenada c = new Coordenada(2, 0, Sentido.INVERSO);
-			t.colocarPalabraHorizontal("HOLA", c);
+			Tabla tabla = new Tabla(tamano);
+			tabla.generarTablero();
+			Coordenada coord = new Coordenada(2, 0, Sentido.INVERSO);
+			tabla.colocarPalabraHorizontal("HOLA", coord);
 			
-			t.colocarPalabraVertical("HIERBA", c);
-			System.out.println(t.toString());
+			tabla.colocarPalabraVertical("HIERBA", coord);
+			System.out.println(tabla.toString());
 		} 
 		catch (SopaLetrasException e) 
 		{
@@ -30,7 +30,7 @@ public class Main
 		}
 		finally 
 		{
-			sc.close();
+			scanner.close();
 		}
 	}
 }
