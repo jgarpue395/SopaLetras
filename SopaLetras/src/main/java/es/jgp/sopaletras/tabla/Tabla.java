@@ -47,7 +47,9 @@ public class Tabla
 		}
 	}
 	
-	private void checkeoPalabra(String palabra, Coordenada coordenada) throws SopaLetrasException {
+	//verifica que la coordenadas iniciales no se salgan del tablero generado
+	private void checkeoPalabra(String palabra, Coordenada coordenada) throws SopaLetrasException 
+	{
 		if (coordenada.getFila() > tamano)
 		{
 			throw new SopaLetrasException("No puedes poner una letra fuera del tablero");
@@ -64,6 +66,7 @@ public class Tabla
 		}
 	}
 	
+	//metodo que llama a otros metodos para colocar la palabras en horizontal y para hacer comprobaciones previas
 	public void colocarPalabraHorizontal(String palabra, Coordenada coordenada) throws SopaLetrasException
 	{
 		checkeoPalabra(palabra, coordenada);
@@ -78,7 +81,8 @@ public class Tabla
 		}
 	}
 	
-	private void colocarPalabraHorizontalNormal(String palabra, Coordenada coordenada) throws SopaLetrasException {
+	private void colocarPalabraHorizontalNormal(String palabra, Coordenada coordenada) throws SopaLetrasException 
+	{
 		if(palabra.length() > this.tamano - coordenada.getColumna())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
@@ -99,8 +103,9 @@ public class Tabla
 		}
 	}
 
-	private void colocarPalabraHorizontalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException {
-		if(palabra.length() > coordenada.getColumna()-1)
+	private void colocarPalabraHorizontalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException 
+	{
+		if(palabra.length()-1 > coordenada.getColumna())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
@@ -134,7 +139,8 @@ public class Tabla
 		}
 	}
 
-	private void colocarPalabraVerticalNormal(String palabra, Coordenada coordenada) throws SopaLetrasException {
+	private void colocarPalabraVerticalNormal(String palabra, Coordenada coordenada) throws SopaLetrasException 
+	{
 		if(palabra.length() > this.tamano - coordenada.getFila())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
@@ -155,8 +161,9 @@ public class Tabla
 		}
 	}
 
-	private void colocarPalabraVerticalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException {
-		if(palabra.length() > coordenada.getFila()-1)
+	private void colocarPalabraVerticalInversa(String palabra, Coordenada coordenada) throws SopaLetrasException 
+	{
+		if(palabra.length()-1 > coordenada.getFila())
 		{
 			throw new SopaLetrasException("La palabra no cabe");
 		}
