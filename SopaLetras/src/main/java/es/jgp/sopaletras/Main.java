@@ -18,11 +18,14 @@ public class Main
 		{
 			Tabla tabla = new Tabla(tamano);
 			tabla.generarTablero();
-			Coordenada coord = new Coordenada(2, 0, Sentido.INVERSO);
+			Coordenada coord = new Coordenada(0, 0, Sentido.NORMAL);
 			tabla.colocarPalabraHorizontal("HOLA", coord);
 			
 			tabla.colocarPalabraVertical("HIERBA", coord);
+			
 			System.out.println(tabla.toString());
+			
+			tabla.mostrarResumenDeLetras();
 		} 
 		catch (SopaLetrasException e) 
 		{
